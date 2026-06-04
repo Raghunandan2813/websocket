@@ -1,0 +1,37 @@
+#app {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 56px 1fr 72px;
+  height: 100vh;
+  gap: 0;
+}
+
+#header {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--accent);
+}
+.logo span { color: var(--accent2); }
+
+#status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: background .3s;
+  margin-left: auto;
+}
+#status-dot.connected    { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+#status-dot.connecting   { background: #ffd166; animation: pulse 1s infinite; }
+#status-dot.disconnected { background: var(--danger); }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .3; } }

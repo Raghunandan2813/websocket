@@ -1,0 +1,25 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0c0c10;
+  --surface:   #141418;
+  --surface2:  #1c1c22;
+  --border:    #2a2a35;
+  --accent:    #7effa0;
+  --accent2:   #5de8ff;
+  --muted:     #5a5a72;
+  --text:      #e4e4f0;
+  --text2:     #9898b8;
+  --danger:    #ff6b6b;
+  --radius:    12px;
+  --font-ui:   'Syne', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  overflow: hidden;
+}
