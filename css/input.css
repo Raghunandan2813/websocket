@@ -1,0 +1,40 @@
+#input-bar {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+#msg-input {
+  flex: 1;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  padding: 10px 16px;
+  outline: none;
+  transition: border-color .15s;
+}
+#msg-input:focus { border-color: var(--accent); }
+#msg-input::placeholder { color: var(--muted); }
+#msg-input:disabled { opacity: .5; cursor: not-allowed; }
+
+#btn-send {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform .1s, opacity .15s;
+  flex-shrink: 0;
+}
+#btn-send:hover:not(:disabled) { transform: scale(1.08); }
+#btn-send:disabled { opacity: .4; cursor: not-allowed; }
+#btn-send svg { color: #0c0c10; }

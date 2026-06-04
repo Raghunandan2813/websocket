@@ -1,0 +1,48 @@
+#modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.6);
+  z-index: 100;
+  place-items: center;
+}
+#modal-overlay.show { display: grid; }
+
+#modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  width: 360px;
+}
+#modal h2 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+#modal p  { font-size: 13px; color: var(--text2); margin-bottom: 18px; }
+
+#modal-input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  padding: 10px 14px;
+  outline: none;
+  margin-bottom: 14px;
+}
+#modal-input:focus { border-color: var(--accent); }
+
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+.btn-ghost {
+  background: none; border: 1px solid var(--border);
+  color: var(--text2); border-radius: 8px; padding: 8px 16px;
+  cursor: pointer; font-family: var(--font-ui); font-size: 13px;
+}
+.btn-ghost:hover { border-color: var(--text2); color: var(--text); }
+
+.btn-primary {
+  background: var(--accent); border: none;
+  color: #0c0c10; border-radius: 8px; padding: 8px 16px;
+  cursor: pointer; font-family: var(--font-ui); font-weight: 700; font-size: 13px;
+}
+.btn-primary:hover { filter: brightness(1.08); }
