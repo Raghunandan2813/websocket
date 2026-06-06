@@ -1,0 +1,17 @@
+#typing-indicator {
+  grid-row: 2;
+  align-self: flex-end;
+  margin-bottom: 8px;
+  margin-left: 24px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--muted);
+  opacity: 0;
+  height: 0;
+  transition: opacity 0.2s, height 0.2s;
+  pointer-events: none;
+}
+#typing-indicator.show {
+  opacity: 1;
+  height: 14px;
+}
