@@ -1,0 +1,11 @@
+.msg.whisper .msg-bubble {
+  background: var(--surface2);
+  color: #ff9cfc;
+  border: 1px dashed #ff9cfc;
+  border-bottom-left-radius: 4px;
+  font-style: italic;
+}
+.msg.whisper .msg-meta {
+  color: #ff9cfc;
+  opacity: 0.8;
+}

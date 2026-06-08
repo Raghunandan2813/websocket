@@ -1,5 +1,5 @@
 import { $ } from './dom.js';
-import { systemMsg } from './ui.js';
+import { systemMsg } from './ui-msg.js';
 import { state } from './state.js';
 
 export const connectionEvents = {

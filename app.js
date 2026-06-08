@@ -1,28 +1,22 @@
 import { $ } from './app/dom.js';
-import { addChatMsg, systemMsg } from './app/ui.js';
+import { addChatMsg, addWhisperMsg, systemMsg } from './app/ui-msg.js';
 import { initClient } from './app/client-manager.js';
-import { setupEventListeners } from './app/events.js';
 import { state } from './app/state.js';
 import { connectionEvents } from './app/connection-events.js';
 import { chatEvents } from './app/chat-events.js';
-import { setupTyping, handleTypingUpdate } from './app/typing.js';
+import { resetTyping } from './app/typing-setup.js';
+import { handleTypingUpdate } from './app/typing-ui.js';
+import { setupAll } from './app/setup.js';
 
 const client = initClient('ws://localhost:8080', {
-  ...connectionEvents,
-  ...chatEvents,
-  onChat: (msg) => addChatMsg($('messages'), msg.payload, state.myId),
+  ...connectionEvents, ...chatEvents,
+  onChat: (m) => addChatMsg($('messages'), m.payload, state.myId),
+  onWhisper: (m) => addWhisperMsg($('messages'), m.payload, state.myId),
   onTyping: handleTypingUpdate,
-  onError: (msg) => systemMsg($('messages'), `Error: ${msg.payload.message}`),
+  onError: (m) => systemMsg($('messages'), `Error: ${m.payload.message}`),
 });
 
-function sendChat() {
+setupAll(client, () => {
   const text = $('msg-input').value.trim();
-  if (text) {
-    client.send('chat', { text });
-    $('msg-input').value = '';
-    client.send('typing', { typing: false });
-  }
-}
-
-setupEventListeners(client, () => state.myUsername, sendChat);
-setupTyping(client);
+  if (text) { client.send('chat', { text }); $('msg-input').value = ''; resetTyping(client); }
+});
