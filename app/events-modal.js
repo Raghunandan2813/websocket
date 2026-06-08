@@ -1,10 +1,6 @@
 import { $ } from './dom.js';
 
-export function setupEventListeners(client, getUsername, sendChat) {
-  $('btn-send').addEventListener('click', sendChat);
-  $('msg-input').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
-  });
+export function setupModalEvents(client, getUsername) {
   $('btn-username').addEventListener('click', () => {
     $('modal-input').value = getUsername() ?? '';
     $('modal-overlay').classList.add('show');
@@ -14,7 +10,7 @@ export function setupEventListeners(client, getUsername, sendChat) {
   $('modal-cancel').addEventListener('click', () => $('modal-overlay').classList.remove('show'));
   $('modal-confirm').addEventListener('click', () => {
     const name = $('modal-input').value.trim();
-    if (name) { client.send('set_username', { username: name }); }
+    if (name) client.send('set_username', { username: name });
     $('modal-overlay').classList.remove('show');
   });
   $('modal-input').addEventListener('keydown', (e) => {

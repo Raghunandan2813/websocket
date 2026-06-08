@@ -17,10 +17,8 @@ async function testTyping() {
   await new Promise(r => setTimeout(r, 500));
   alice.send(JSON.stringify({ type: 'typing', payload: { typing: false } }));
   await new Promise(r => setTimeout(r, 200));
-
   console.log('\nTyping test complete.');
-  alice.close();
-  bob.close();
+  alice.close(); bob.close();
 }
 
 testTyping().catch(console.error);

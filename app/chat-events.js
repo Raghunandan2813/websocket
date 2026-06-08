@@ -1,26 +1,28 @@
 import { $ } from './dom.js';
-import { systemMsg, updateUserList } from './ui.js';
+import { systemMsg } from './ui-msg.js';
+import { updateUserList } from './ui-user.js';
 import { state } from './state.js';
 
 export const chatEvents = {
-  onWelcome: (msg) => {
-    state.myId = msg.payload.you.id;
-    state.myUsername = msg.payload.you.username;
-    updateUserList($('user-list'), msg.payload.users, state.myId);
+  onWelcome: (m) => {
+    state.myId = m.payload.you.id;
+    state.myUsername = m.payload.you.username;
+    updateUserList($('user-list'), m.payload.users, state.myId);
     systemMsg($('messages'), `Connected as ${state.myUsername}`);
   },
-  onUserJoined: (msg) => {
-    updateUserList($('user-list'), msg.payload.users, state.myId);
-    systemMsg($('messages'), `${msg.payload.username} joined`);
+  onUserJoined: (m) => {
+    updateUserList($('user-list'), m.payload.users, state.myId);
+    systemMsg($('messages'), `${m.payload.username} joined`);
   },
-  onUserLeft: (msg) => {
-    updateUserList($('user-list'), msg.payload.users, state.myId);
-    systemMsg($('messages'), `${msg.payload.username} left`);
+  onUserLeft: (m) => {
+    updateUserList($('user-list'), m.payload.users, state.myId);
+    systemMsg($('messages'), `${m.payload.username} left`);
   },
-  onUsernameChanged: (msg) => {
-    updateUserList($('user-list'), msg.payload.users, state.myId);
-    const self = msg.payload.id === state.myId;
-    if (self) state.myUsername = msg.payload.newUsername;
-    systemMsg($('messages'), self ? `You are now ${state.myUsername}` : `${msg.payload.oldUsername} → ${msg.payload.newUsername}`);
+  onUsernameChanged: (m) => {
+    updateUserList($('user-list'), m.payload.users, state.myId);
+    const self = m.payload.id === state.myId;
+    if (self) state.myUsername = m.payload.newUsername;
+    const desc = self ? `You are now ${state.myUsername}` : `${m.payload.oldUsername} → ${m.payload.newUsername}`;
+    systemMsg($('messages'), desc);
   }
 };
